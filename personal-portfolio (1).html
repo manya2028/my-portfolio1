@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio of Your Name — developer, creator, and problem solver.">
+  <title>Your Name | Developer Portfolio</title>
+  <style>
+    :root {
+      --navy: #0b1224;
+      --navy-light: #111d35;
+      --card: #14213b;
+      --orange: #ff8a3d;
+      --orange-light: #ffad73;
+      --text: #f4f6fb;
+      --muted: #aab5c8;
+      --line: rgba(255,255,255,.1);
+      --max-width: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(90%, var(--max-width)); margin: 0 auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(11,18,36,.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      min-height: 76px; display: flex; align-items: center;
+      justify-content: space-between; gap: 24px;
+    }
+    .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -.04em; }
+    .logo span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .94rem; transition: color .2s; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--orange); }
+    .menu-toggle {
+      display: none; color: var(--text); background: transparent;
+      border: 1px solid var(--line); border-radius: 10px; padding: 8px 11px;
+      cursor: pointer;
+    }
+
+    .hero { padding: 112px 0 100px; overflow: hidden; }
+    .hero-inner { max-width: 780px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      color: var(--orange-light); font-weight: 700; font-size: .85rem;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--orange); }
+    h1 {
+      margin: 22px 0 18px; font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: 1.06; letter-spacing: -.065em;
+    }
+    h1 span { color: var(--orange); }
+    .hero p { color: var(--muted); max-width: 620px; font-size: 1.12rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 20px; border-radius: 9px; font-weight: 750;
+      border: 1px solid transparent; transition: transform .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #1a1720; background: var(--orange); }
+    .btn-primary:hover { background: var(--orange-light); }
+    .btn-secondary { border-color: var(--line); color: var(--text); }
+    .btn-secondary:hover { background: var(--navy-light); }
+
+    section { padding: 82px 0; }
+    .section-heading { margin-bottom: 34px; }
+    .section-heading .eyebrow { margin-bottom: 10px; }
+    h2 { font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.2; letter-spacing: -.045em; }
+    .section-intro { color: var(--muted); max-width: 620px; margin-top: 12px; }
+    .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: start; }
+    .about-copy p { color: var(--muted); margin-bottom: 16px; }
+    .about-note {
+      background: var(--navy-light); border: 1px solid var(--line);
+      border-radius: 16px; padding: 26px;
+    }
+    .about-note strong { color: var(--orange); display: block; margin-bottom: 8px; }
+    .about-note p { color: var(--muted); }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .skill {
+      background: var(--navy-light); border: 1px solid var(--line);
+      border-radius: 12px; padding: 17px 18px; color: var(--text);
+      font-weight: 650;
+    }
+    .skill small { display: block; color: var(--muted); font-weight: 400; margin-top: 3px; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .project-card {
+      display: flex; flex-direction: column; min-height: 265px;
+      padding: 25px; border-radius: 16px; background: var(--card);
+      border: 1px solid var(--line); transition: transform .2s, border-color .2s;
+    }
+    .project-card:hover { transform: translateY(-5px); border-color: rgba(255,138,61,.65); }
+    .project-number { color: var(--orange); font-size: .85rem; font-weight: 800; letter-spacing: .1em; }
+    .project-card h3 { margin: 17px 0 9px; font-size: 1.25rem; }
+    .project-card p { color: var(--muted); font-size: .95rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 22px; }
+    .project-tags span {
+      font-size: .75rem; color: var(--orange-light);
+      background: rgba(255,138,61,.1); padding: 4px 9px; border-radius: 20px;
+    }
+
+    .contact-panel {
+      display: flex; justify-content: space-between; align-items: center; gap: 30px;
+      padding: 38px; border-radius: 18px; background: var(--navy-light);
+      border: 1px solid var(--line);
+    }
+    .contact-panel p { color: var(--muted); margin-top: 10px; max-width: 570px; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .contact-links a { color: var(--orange-light); font-weight: 650; }
+    .contact-links a:hover { color: var(--text); }
+    footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+    :focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+    @media (max-width: 800px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 24px; }
+      .contact-panel { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 620px) {
+      .nav { min-height: 68px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links {
+        display: none; position: absolute; top: 68px; left: 0; right: 0;
+        padding: 18px 5% 22px; background: var(--navy-light);
+        border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 17px;
+      }
+      .nav-links.open { display: flex; }
+      .hero { padding: 82px 0 70px; }
+      section { padding: 64px 0; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-panel { padding: 26px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="logo" href="#home">YOUR<span>NAME.</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation menu">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <span class="eyebrow">Hello, I'm</span>
+        <h1>Your Name.<br><span>Developer in the making.</span></h1>
+        <p>I enjoy turning ideas into simple, useful digital experiences. I'm learning, building projects, and growing one line of code at a time.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">Explore my work</a>
+          <a class="btn btn-secondary" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">A little introduction</span>
+          <h2>About me</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>I'm an aspiring developer with an interest in creating clean, accessible, and responsive websites. I like learning how things work and putting that knowledge into practice through small projects.</p>
+            <p>Right now, I'm strengthening my foundations in web development and exploring new technologies. I'm always open to learning, collaborating, and taking on a fresh challenge.</p>
+          </div>
+          <aside class="about-note">
+            <strong>Currently focused on</strong>
+            <p>Building a strong foundation in HTML, CSS, JavaScript, and problem-solving — while adding meaningful projects to my portfolio.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">What I work with</span>
+          <h2>My skills</h2>
+          <p class="section-intro">A snapshot of the tools and technologies I'm learning and using.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill">HTML5<small>Semantic structure</small></div>
+          <div class="skill">CSS3<small>Responsive layouts</small></div>
+          <div class="skill">JavaScript<small>Learning the basics</small></div>
+          <div class="skill">Git & GitHub<small>Version control</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">A few things I've made</span>
+          <h2>Featured projects</h2>
+          <p class="section-intro">Replace these examples with your own work, screenshots, and project links.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card">
+            <span class="project-number">PROJECT 01</span>
+            <h3>Personal Portfolio</h3>
+            <p>A responsive website introducing me, highlighting my skills, and making it easy to get in touch.</p>
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>Responsive</span></div>
+          </article>
+          <article class="project-card">
+            <span class="project-number">PROJECT 02</span>
+            <h3>Study Planner</h3>
+            <p>A simple layout concept for organising subjects, tasks, and study goals in one place.</p>
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>UI Design</span></div>
+          </article>
+          <article class="project-card">
+            <span class="project-number">PROJECT 03</span>
+            <h3>Landing Page</h3>
+            <p>A clean landing page concept designed to introduce a product with a clear call to action.</p>
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>Design</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <div>
+            <span class="eyebrow">Let's connect</span>
+            <h2>Have a project in mind?</h2>
+            <p>I'd love to hear from you. Send me an email or find me on GitHub and LinkedIn.</p>
+            <div class="contact-links">
+              <a href="mailto:your.email@example.com">Email</a>
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/yourusername/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="mailto:your.email@example.com">Say hello ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span>© <span id="year"></span> Your Name. Made with care.</span>
+      <span>Designed & built by me.</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+      menuButton.textContent = isOpen ? "✕" : "☰";
+    });
+
+    // Close the mobile menu after a navigation link is selected.
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open navigation menu");
+        menuButton.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
